@@ -9,7 +9,21 @@ from arithmetic import *
 
 # Your code goes here
 
-
+def greeting_and_instructions():
+    """Greets users and provides instructions on how to use calculator"""
+    print("Welcome to calculator!")
+    print("To use the calculator, follow these instructions:")
+    print("""
+        To add two numbers, enter: + num1 num2
+        To subtract num2 from num1, enter: - num1 num2
+        To multiply two numbers, enter: * num1 num2
+        To divide num1 by num2, enter: / num1 num2
+        To find the square of a num, enter: square num
+        To find the cube of a num, enter: cube num
+        To raise num1 to the power of num2, enter: pow num1 num2
+        To find the remainder of num1 divided by num2, enter: mod num1 num2
+        To quit the program, enter: q
+        """)
 
 def get_user_input():
     """Gets calculator input from user."""
@@ -25,7 +39,25 @@ def tokenize_user_input():
     user_input_2 = get_user_input()
     user_input_2 = user_input_2.split()
     
-    return user_input_2
+    takes_1_argument = ["square", "cube"]
+    takes_2_arguments = ["+", "-", "*", "/", "pow", "mod"]
+
+    if user_input_2[0] == "q":
+        return user_input_2
+    elif user_input_2[0] in takes_1_argument:
+        if len(user_input_2) != 2:
+            print("Please check your syntax.")
+            interpret_user_input()
+        else:
+            return user_input_2
+            print(user_input_2)
+    elif user_input_2[0] in takes_2_arguments:
+        if len(user_input_2) != 3:
+            print("Please check your syntax.")
+            interpret_user_input()
+        else:
+            return user_input_2
+
 
 
 def update_type_of_user_input():
@@ -36,7 +68,6 @@ def update_type_of_user_input():
         user_input_3[1] = float(user_input_3[1])
         if len(user_input_3) == 3:
             user_input_3[2] = float(user_input_3[2])
-   
     return user_input_3
 
 
@@ -47,13 +78,13 @@ def interpret_user_input():
     """
 
     while True:
-        user_input_3 = update_type_of_user_input()
-        first_argument = user_input_3[0]
+        user_input_4 = update_type_of_user_input()
+        first_argument = user_input_4[0]
         
-        if len(user_input_3) > 1:
-            second_argument = user_input_3[1]
-            if len(user_input_3) == 3:
-                third_argument = user_input_3[2]
+        if len(user_input_4) > 1:
+            second_argument = user_input_4[1]
+            if len(user_input_4) == 3:
+                third_argument = user_input_4[2]
         
         if first_argument == "q":
             print("Quitting calculator.")
@@ -87,5 +118,5 @@ def interpret_user_input():
             print("That's not a valid operator.")
 
 
-
+greeting_and_instructions() # call function to print greeting/instructions
 interpret_user_input() # call function to start calculator program
